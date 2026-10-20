@@ -1,0 +1,36 @@
+# ============================================================
+# Backend .gitignore — NEVER commit secrets or runtime data
+# ============================================================
+
+# Real secrets — must never be committed
+.env
+
+# Python runtime
+__pycache__/
+*.py[cod]
+*.pyo
+.venv/
+venv/
+env/
+*.egg-info/
+dist/
+build/
+
+# ML model weights (large binaries — use Git LFS or artifact store)
+*.pt
+*.onnx
+*.pkl
+
+# Database files
+*.db
+*.sqlite
+*.sqlite3
+
+# Uploaded user images
+uploads/
+
+# YOLO result images
+runs/
+
+# Logs
+*.log

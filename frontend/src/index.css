@@ -1,0 +1,771 @@
+/* ============================================
+   🎨 POTHOLEAI — GLOBAL STYLESHEET
+   ============================================ */
+
+/* ============================================
+   1. CSS RESET & BOX MODEL
+   ============================================ */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* ============================================
+   2. ROOT VARIABLES (Brand Colors)
+   ============================================ */
+:root {
+  /* Brand colors */
+  --brand-yellow: #f4c430;
+  --brand-yellow-light: #ffd966;
+  --brand-orange: #ff6b35;
+  --brand-orange-light: #ff8555;
+  --brand-green: #5fb87a;
+  --brand-red: #e8453c;
+  --brand-blue: #7b9eff;
+
+  /* Background colors */
+  --bg-primary: #0f1014;
+  --bg-secondary: #1c1d22;
+  --bg-tertiary: #2c2c31;
+  --bg-card: rgba(28, 29, 34, 0.8);
+
+  /* Text colors */
+  --text-primary: #ece9e2;
+  --text-secondary: #c8c6bd;
+  --text-muted: #9b9a93;
+  --text-dim: #6b6a64;
+
+  /* Border colors */
+  --border-subtle: rgba(244, 196, 48, 0.1);
+  --border-medium: rgba(244, 196, 48, 0.2);
+  --border-strong: rgba(244, 196, 48, 0.4);
+
+  /* Shadows */
+  --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.5);
+  --shadow-glow-yellow: 0 0 30px rgba(244, 196, 48, 0.3);
+  --shadow-glow-orange: 0 0 30px rgba(255, 107, 53, 0.3);
+
+  /* Gradients */
+  --gradient-primary: linear-gradient(135deg, #f4c430, #ffd966);
+  --gradient-orange: linear-gradient(135deg, #ff6b35, #ff8555);
+  --gradient-mixed: linear-gradient(135deg, #f4c430, #ff6b35);
+  --gradient-bg: linear-gradient(135deg, rgba(28, 29, 34, 0.8), rgba(20, 21, 26, 0.8));
+
+  /* Transitions */
+  --transition-fast: 0.15s ease;
+  --transition-medium: 0.3s ease;
+  --transition-slow: 0.5s ease;
+
+  /* Fonts */
+  --font-display: 'Oswald', 'Segoe UI', sans-serif;
+  --font-body: 'Inter', 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
+
+  /* Spacing scale */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 40px;
+  --space-2xl: 64px;
+}
+
+/* ============================================
+   3. HTML & BODY BASE STYLES
+   ============================================ */
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+  /* Better mobile experience */
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  line-height: 1.6;
+  
+  /* Better text rendering */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  
+  /* Prevent horizontal scroll */
+  overflow-x: hidden;
+  
+  /* Background pattern subtle */
+  background-image: 
+    radial-gradient(ellipse 800px 600px at 20% 0%, rgba(244, 196, 48, 0.03), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 80% 100%, rgba(255, 107, 53, 0.03), transparent 60%);
+  background-attachment: fixed;
+}
+
+/* ============================================
+   4. CUSTOM SCROLLBAR (Premium Look)
+   ============================================ */
+
+/* Webkit (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+  border-left: 1px solid var(--border-subtle);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, var(--brand-yellow), var(--brand-orange));
+  border-radius: 5px;
+  border: 2px solid var(--bg-primary);
+  transition: background var(--transition-medium);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, var(--brand-yellow-light), var(--brand-orange-light));
+  box-shadow: 0 0 10px rgba(244, 196, 48, 0.4);
+}
+
+::-webkit-scrollbar-corner {
+  background: var(--bg-primary);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--brand-yellow) var(--bg-primary);
+}
+
+/* Hide scrollbar utility class */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* ============================================
+   5. SELECTION & FOCUS STYLES
+   ============================================ */
+::selection {
+  background: var(--brand-yellow);
+  color: var(--bg-primary);
+  text-shadow: none;
+}
+
+::-moz-selection {
+  background: var(--brand-yellow);
+  color: var(--bg-primary);
+}
+
+/* Accessible focus outline */
+*:focus {
+  outline: none;
+}
+
+*:focus-visible {
+  outline: 2px solid var(--brand-yellow);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ============================================
+   6. TYPOGRAPHY
+   ============================================ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+h1 { font-size: clamp(36px, 6vw, 64px); }
+h2 { font-size: clamp(28px, 4vw, 44px); }
+h3 { font-size: clamp(22px, 3vw, 32px); }
+h4 { font-size: clamp(18px, 2.5vw, 24px); }
+h5 { font-size: 18px; }
+h6 { font-size: 16px; }
+
+p {
+  color: var(--text-secondary);
+  line-height: 1.7;
+}
+
+small {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Text gradient utility */
+.text-gradient {
+  background: var(--gradient-mixed);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ============================================
+   7. LINKS
+   ============================================ */
+a {
+  text-decoration: none;
+  color: var(--brand-yellow);
+  transition: color var(--transition-fast);
+  position: relative;
+}
+
+a:hover {
+  color: var(--brand-yellow-light);
+}
+
+a.underline-anim {
+  display: inline-block;
+}
+
+a.underline-anim::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--brand-yellow);
+  transition: width var(--transition-medium);
+}
+
+a.underline-anim:hover::after {
+  width: 100%;
+}
+
+/* ============================================
+   8. BUTTONS
+   ============================================ */
+button {
+  cursor: pointer;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  background: transparent;
+  color: inherit;
+  transition: all var(--transition-medium);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* Button utility classes */
+.btn-primary {
+  background: var(--gradient-primary);
+  color: var(--bg-primary);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+  clip-path: polygon(12px 0, 100% 0, calc(100% - 12px) 100%, 0 100%);
+  box-shadow: var(--shadow-glow-yellow);
+}
+
+.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 15px 40px rgba(244, 196, 48, 0.5);
+}
+
+.btn-secondary {
+  background: transparent;
+  border: 1px solid var(--border-medium);
+  color: var(--text-muted);
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 14px 28px;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  border-color: var(--brand-yellow);
+  color: var(--brand-yellow);
+}
+
+/* ============================================
+   9. FORM ELEMENTS
+   ============================================ */
+input,
+textarea,
+select {
+  font-family: var(--font-body);
+  font-size: 14px;
+  color: var(--text-primary);
+  background: rgba(23, 24, 25, 0.8);
+  border: 1px solid var(--border-medium);
+  padding: 12px 16px;
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+  width: 100%;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: var(--brand-yellow);
+  box-shadow: 0 0 0 3px rgba(244, 196, 48, 0.1);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: var(--text-dim);
+  opacity: 1;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+/* Custom checkbox/radio (optional) */
+input[type="checkbox"],
+input[type="radio"] {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--brand-yellow);
+  cursor: pointer;
+}
+
+/* ============================================
+   10. IMAGES & MEDIA
+   ============================================ */
+img,
+video {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  transition: opacity var(--transition-medium);
+}
+
+img[loading="lazy"] {
+  opacity: 0;
+}
+
+img.loaded {
+  opacity: 1;
+}
+
+/* ============================================
+   11. LAYOUT UTILITIES
+   ============================================ */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+  width: 100%;
+}
+
+.container-sm { max-width: 720px; margin: 0 auto; padding: 0 20px; }
+.container-md { max-width: 960px; margin: 0 auto; padding: 0 20px; }
+.container-lg { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+.container-xl { max-width: 1440px; margin: 0 auto; padding: 0 20px; }
+
+/* Flex utilities */
+.flex { display: flex; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-between { display: flex; justify-content: space-between; align-items: center; }
+.flex-col { display: flex; flex-direction: column; }
+.flex-wrap { flex-wrap: wrap; }
+
+/* Grid utilities */
+.grid { display: grid; }
+.grid-2 { display: grid; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+
+/* Spacing utilities */
+.gap-xs { gap: 4px; }
+.gap-sm { gap: 8px; }
+.gap-md { gap: 16px; }
+.gap-lg { gap: 24px; }
+.gap-xl { gap: 40px; }
+
+/* ============================================
+   12. CARD COMPONENT
+   ============================================ */
+.card {
+  background: var(--gradient-bg);
+  border: 1px solid var(--border-subtle);
+  padding: 24px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: transform var(--transition-medium), border-color var(--transition-medium);
+  position: relative;
+  overflow: hidden;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  border-color: var(--border-medium);
+}
+
+.card-glow {
+  position: relative;
+}
+
+.card-glow::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--gradient-mixed);
+}
+
+/* ============================================
+   13. ANIMATIONS
+   ============================================ */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 20px rgba(244, 196, 48, 0.4); }
+  50% { box-shadow: 0 0 40px rgba(244, 196, 48, 0.7); }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* Animation utility classes */
+.animate-fadeIn { animation: fadeIn 0.5s ease forwards; }
+.animate-fadeInUp { animation: fadeInUp 0.6s ease forwards; }
+.animate-fadeInDown { animation: fadeInDown 0.6s ease forwards; }
+.animate-pulse { animation: pulse 2s ease-in-out infinite; }
+.animate-glow { animation: glow 2s ease-in-out infinite; }
+.animate-spin { animation: spin 1s linear infinite; }
+.animate-float { animation: float 3s ease-in-out infinite; }
+
+/* Shimmer loading effect */
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    var(--bg-secondary) 25%,
+    var(--bg-tertiary) 50%,
+    var(--bg-secondary) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ============================================
+   14. BADGES & PILLS
+   ============================================ */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 12px;
+  font-family: var(--font-display);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid;
+}
+
+.badge-yellow { background: rgba(244, 196, 48, 0.1); border-color: var(--brand-yellow); color: var(--brand-yellow); }
+.badge-orange { background: rgba(255, 107, 53, 0.1); border-color: var(--brand-orange); color: var(--brand-orange); }
+.badge-green { background: rgba(95, 184, 122, 0.1); border-color: var(--brand-green); color: var(--brand-green); }
+.badge-red { background: rgba(232, 69, 60, 0.1); border-color: var(--brand-red); color: var(--brand-red); }
+
+/* Status dot */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+  animation: pulse 1.5s ease-in-out infinite;
+}
+
+/* ============================================
+   15. LOADING SKELETON
+   ============================================ */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    rgba(28, 29, 34, 0.5) 25%,
+    rgba(44, 44, 49, 0.5) 50%,
+    rgba(28, 29, 34, 0.5) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+.skeleton-text { height: 14px; margin-bottom: 8px; }
+.skeleton-title { height: 24px; width: 60%; margin-bottom: 12px; }
+.skeleton-box { height: 100px; }
+
+/* ============================================
+   16. GLASSMORPHISM EFFECT
+   ============================================ */
+.glass {
+  background: rgba(28, 29, 34, 0.6);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ============================================
+   17. RESPONSIVE BREAKPOINTS
+   ============================================ */
+@media (max-width: 1024px) {
+  .grid-4 { grid-template-columns: repeat(2, 1fr); }
+  .grid-3 { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  html { font-size: 15px; }
+  
+  .container,
+  .container-sm,
+  .container-md,
+  .container-lg,
+  .container-xl {
+    padding: 0 16px;
+  }
+  
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+  
+  /* Smaller scrollbar on mobile */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+  
+  /* Hide custom scrollbar elements that don't fit */
+  body::-webkit-scrollbar {
+    width: 4px;
+  }
+}
+
+@media (max-width: 480px) {
+  html { font-size: 14px; }
+  
+  h1 { font-size: clamp(28px, 8vw, 48px); }
+  h2 { font-size: clamp(24px, 6vw, 36px); }
+}
+
+/* ============================================
+   18. PRINT STYLES
+   ============================================ */
+@media print {
+  body {
+    background: white;
+    color: black;
+  }
+  
+  .no-print {
+    display: none !important;
+  }
+  
+  a {
+    color: black;
+    text-decoration: underline;
+  }
+}
+
+/* ============================================
+   19. ACCESSIBILITY — REDUCED MOTION
+   ============================================ */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================
+   20. UTILITY CLASSES
+   ============================================ */
+
+/* Display */
+.hidden { display: none !important; }
+.block { display: block; }
+.inline-block { display: inline-block; }
+
+/* Position */
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+.sticky { position: sticky; top: 0; }
+
+/* Text alignment */
+.text-center { text-align: center; }
+.text-left { text-align: left; }
+.text-right { text-align: right; }
+
+/* Text colors */
+.text-yellow { color: var(--brand-yellow); }
+.text-orange { color: var(--brand-orange); }
+.text-green { color: var(--brand-green); }
+.text-red { color: var(--brand-red); }
+.text-muted { color: var(--text-muted); }
+.text-dim { color: var(--text-dim); }
+
+/* Text transform */
+.uppercase { text-transform: uppercase; letter-spacing: 0.06em; }
+.lowercase { text-transform: lowercase; }
+.capitalize { text-transform: capitalize; }
+
+/* Font weight */
+.font-light { font-weight: 300; }
+.font-normal { font-weight: 400; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: 700; }
+
+/* Cursor */
+.cursor-pointer { cursor: pointer; }
+.cursor-not-allowed { cursor: not-allowed; }
+
+/* Width/Height */
+.w-full { width: 100%; }
+.h-full { height: 100%; }
+.min-h-screen { min-height: 100vh; }
+
+/* Overflow */
+.overflow-hidden { overflow: hidden; }
+.overflow-auto { overflow: auto; }
+.overflow-scroll { overflow: scroll; }
+
+/* Border radius */
+.rounded-none { border-radius: 0; }
+.rounded-sm { border-radius: 2px; }
+.rounded { border-radius: 4px; }
+.rounded-md { border-radius: 8px; }
+.rounded-lg { border-radius: 12px; }
+.rounded-full { border-radius: 9999px; }
+
+/* Shadows */
+.shadow-sm { box-shadow: var(--shadow-sm); }
+.shadow-md { box-shadow: var(--shadow-md); }
+.shadow-lg { box-shadow: var(--shadow-lg); }
+.shadow-glow-yellow { box-shadow: var(--shadow-glow-yellow); }
+.shadow-glow-orange { box-shadow: var(--shadow-glow-orange); }
+
+/* Z-index */
+.z-0 { z-index: 0; }
+.z-10 { z-index: 10; }
+.z-50 { z-index: 50; }
+.z-100 { z-index: 100; }
+.z-max { z-index: 9999; }
+
+/* ============================================
+   21. LEAFLET MAP OVERRIDES (for Report page)
+   ============================================ */
+.leaflet-container {
+  background: var(--bg-secondary) !important;
+  font-family: var(--font-body);
+}
+
+.leaflet-control-attribution {
+  background: rgba(28, 29, 34, 0.8) !important;
+  color: var(--text-muted) !important;
+  font-size: 10px !important;
+}
+
+.leaflet-control-attribution a {
+  color: var(--brand-yellow) !important;
+}
+
+.leaflet-popup-content-wrapper {
+  background: var(--bg-secondary);
+  color: var(--text-primary);
+  border: 1px solid var(--border-medium);
+}
+
+.leaflet-popup-tip {
+  background: var(--bg-secondary);
+}
+
+/* ============================================
+   22. RECHARTS OVERRIDES (for Dashboard)
+   ============================================ */
+.recharts-cartesian-grid line {
+  stroke: rgba(244, 196, 48, 0.08);
+}
+
+.recharts-tooltip-wrapper {
+  outline: none !important;
+}
+
+.recharts-default-tooltip {
+  background: var(--bg-secondary) !important;
+  border: 1px solid var(--border-medium) !important;
+  border-radius: 0 !important;
+  font-family: var(--font-body) !important;
+}
+
